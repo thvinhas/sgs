@@ -276,7 +276,25 @@
                                     <a href="<?php echo base_url('aluno/index');?>">Cadastrar Aluno</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url('pages/forms.html');?>">Cadastrar Turma</a>
+                                    <a href="<?php echo base_url('aula/index');?>">Cadastrar Aulas</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('curso/index');?>">Cadastrar Cursos</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('disciplina/index');?>">Cadastrar Disciplinas</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('notas/index');?>">Cadastrar Notas</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('professor/index');?>">Cadastrar Professores</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('serie/index');?>">Cadastrar Series</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url('turma/index');?>">Cadastrar Turma</a>
                                 </li>
                             </ul>
                             
