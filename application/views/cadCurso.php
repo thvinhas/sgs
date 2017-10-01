@@ -7,7 +7,7 @@ include('include/header.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Cadastro de Aluno</h1>
+                    <h1 class="page-header">Cadastro de Cursos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -16,40 +16,28 @@ include('include/header.php');
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Informe os dados do aluno
+                            Informe os dados do curso
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome...">
+                                            <label>Nome do curso:</label>
+                                            <input class="form-control" name="nome_curso" placeholder="Digite nome...">
                                             <p class="help-block"></p>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Data de Nascimento:</label>
-                                            <input class="form-control" type="date" name="data_nasc_aluno">
+                                        
+                                        <label>Valor do curso:</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">R$</span>
+                                            <input type="text" name="valor_curso" class="form-control">
+                                            <span class="input-group-addon">,00</span>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Nome da Mãe:</label>
-                                            <input class="form-control" name="mae_aluno">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>CPF da Mãe:</label>
-                                            <input class="form-control" name="CPF_mae_aluno">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nome do Pai:</label>
-                                            <input class="form-control" name="pai_aluno">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>CPF do Pai:</label>
-                                            <input class="form-control" name="CPF_pai_aluno">
-                                        </div>
+                                    
                                         <div class="form-group">
                                             <label>Turma</label>
-                                            <select class="form-control">
+                                            <select name="id_turma" class="form-control">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
