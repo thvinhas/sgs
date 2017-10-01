@@ -21,7 +21,7 @@ include('include/header.php');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php echo  form_open('aluno/store')  ?>
                                         <div class="form-group">
                                             <label>Nome:</label>
                                             <input class="form-control" name="nome" placeholder="Digite nome...">
@@ -49,8 +49,8 @@ include('include/header.php');
                                         </div>
                                         <div class="form-group">
                                             <label>Turma</label>
-                                            <select class="form-control">
-                                                <option>1</option>
+                                            <select class="form-control" name="turma">
+                                                <option value="2    ">1</option>
                                                 <option>2</option>
                                                 <option>3</option>
                                                 <option>4</option>
@@ -60,8 +60,8 @@ include('include/header.php');
 
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                         <button type="reset" class="btn btn-default">Reset Button</button>
-                                   
-                                   </form>
+
+                                    <?php echo form_close(); ?>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>
