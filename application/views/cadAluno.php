@@ -50,7 +50,7 @@ include('include/header.php');
                                         <div class="form-group">
                                             <label>Turma</label>
                                             <select class="form-control" name="turma">
-                                                <option value="2    ">1</option>
+                                                <option value="1">1</option>
                                                 <option>2</option>
                                                 <option>3</option>
                                                 <option>4</option>
