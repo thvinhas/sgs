@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class Curso extends CI_Model
+class m_notas extends CI_Model
 {
-    private $tabel = 'crs_curso';
+    private $tabel = 'not_notas';
 
     public function __construct()
     {

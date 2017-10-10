@@ -26,7 +26,7 @@ class Aluno extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('cadAluno');
+        $this->cadastrar();
 	}
 
 	public function listar ()
@@ -37,7 +37,6 @@ class Aluno extends CI_Controller {
 
     public function store()
     {
-
         $this->load->library('form_validation');
 //        $regras = array();
         $regras = array(
@@ -77,5 +76,15 @@ class Aluno extends CI_Controller {
             }
 
         }
+    }
+
+    public function cadastrar() {
+        $this->load->model('m_serie');
+        $data= array();
+        $series = $this->m_serie->get();
+        $data['series'] = $series->result();
+//        var_dump($series->result());exit();
+
+        $this->load->view('cadAluno',$data);
     }
 }

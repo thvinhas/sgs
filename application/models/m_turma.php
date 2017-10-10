@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class Disciplina extends CI_Model
+class m_turma extends CI_Model
 {
-    private $tabel = 'dis_disciplina';
+    private $tabel = 'tur_turma';
 
     public function __construct()
     {

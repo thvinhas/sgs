@@ -22,4 +22,56 @@ class Curso extends CI_Controller {
 	{
 		$this->load->view('cadCurso');
 	}
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('m_curso');
+    }
+
+    public function listar ()
+    {
+        $data['dados'] = $this->aula->get();
+
+    }
+
+    public function store()
+    {
+
+        $this->load->library('form_validation');
+//        $regras = array();
+        $regras = array(
+            array(
+                'field' => 'id_disciplina',
+                'label' => 'Disciplina',
+                'rules' => 'required'
+            )
+        );
+//
+        $this->form_validation->set_rules($regras);
+
+        if ($this->form_validation->run() == FALSE) {
+            $variaveis['titulo'] = 'Novo Registro';
+            $this->load->view('cadAluno', $variaveis);
+        } else {
+//            var_dump('hue');exit();
+            $id = $this->input->post('id');
+
+            $dados = array(
+                "aul_id_disciplina" => $this->input->post('id_disciplina'),
+                "aul_dt_aula" => $this->input->post('data_aula'),
+                "tur_turma_tur_id_serie" => $this->input->post('id_turma')
+            );
+
+            if ($this->m_aluno->store($dados, $id)) {
+                $variaveis['mensagem'] = "Dados gravados com sucesso!";
+//                $this->load->view('v_sucesso', $variaveis);
+                var_dump('succes');exit;
+            } else {
+                $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+//                $this->load->view('errors/html/v_erro', $variaveis);
+            }
+
+        }
+    }
 }

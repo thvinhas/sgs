@@ -50,11 +50,9 @@ include('include/header.php');
                                         <div class="form-group">
                                             <label>Turma</label>
                                             <select class="form-control" name="turma">
-                                                <option value="1">1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php foreach ($series as $serie): ?>
+                                                <option value="<?php echo $serie->ser_id_serie?>"><?php echo $serie->ser_ds_serie ?> </option>
+                                                <?php endforeach;?>
                                             </select>
                                         </div>
 
