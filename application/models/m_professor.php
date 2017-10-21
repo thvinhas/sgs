@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class Serie extends CI_Model
+class m_professor extends CI_Model
 {
-    private $tabel = 'ser_serie';
+    private $tabel = 'professor';
 
     public function __construct()
     {

@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class Professor extends CI_Model
+class m_turma extends CI_Model
 {
-    private $tabel = 'pro_professor';
+    private $tabel = 'turma';
 
     public function __construct()
     {

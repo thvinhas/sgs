@@ -26,13 +26,19 @@ class Aluno extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('cadAluno');
+        $this->cadastrar();
 	}
 
 	public function listar ()
     {
 	    $data['dados'] = $this->aluno->get();
 
+    }
+
+    public function cadastrar () {
+        $this->load->model('m_turma');
+        $data['resultado'] = $this->m_turma->get()->result_array();
+        $this->load->view('cadAluno', $data);
     }
 
     public function store()
@@ -58,13 +64,14 @@ class Aluno extends CI_Controller {
             $id = $this->input->post('id');
 
             $dados = array(
-                "alu_nm_aluno" => $this->input->post('nome'),
-                "alu_dt_nascimento" => $this->input->post('data_nasc_aluno'),
-                "alu_nm_mae" => $this->input->post('mae_aluno'),
-                "alu_nu_cpf_mae" => $this->input->post('CPF_mae_aluno'),
-                "alu_nu_cpf_pai" => $this->input->post('CPF_pai_aluno'),
-                "alu_nm_pai" => $this->input->post('pai_aluno'),
-                "ser_serie_ser_id_serie " => (integer) $this->input->post('turma')
+                "nome" => $this->input->post('nome'),
+                "data_nascimento" => $this->input->post('data_nasc_aluno'),
+                "rg_aluno" => $this->input->post('rg_aluno'),
+                "nome_mae" => $this->input->post('mae_aluno'),
+                "cpf_mae" => $this->input->post('CPF_mae_aluno'),
+                "cpf_pai" => $this->input->post('CPF_pai_aluno'),
+                "nome_pai" => $this->input->post('pai_aluno'),
+                "serie_id" => (integer) $this->input->post('turma')
 
             );
             if ($this->m_aluno->store($dados, $id)) {

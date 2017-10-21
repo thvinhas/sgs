@@ -8,7 +8,7 @@
 
 class Disciplina extends CI_Model
 {
-    private $tabel = 'dis_disciplina';
+    private $tabel = 'disciplina';
 
     public function __construct()
     {

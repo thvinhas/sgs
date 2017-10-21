@@ -8,7 +8,7 @@
 
 class m_aluno extends CI_Model
 {
-    private $tabel = 'alu_aluno';
+    private $tabel = 'aluno';
 
     public function __construct()
     {

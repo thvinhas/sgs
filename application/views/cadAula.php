@@ -49,8 +49,8 @@ include('include/header.php');
                                             <input class="form-control" type="date" name="data_aula">
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                                        <button type="reset" class="btn btn-default">Limpar</button>
                                    
                                    </form>
                                 </div>

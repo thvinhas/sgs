@@ -18,8 +18,65 @@ class Serie extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('cadSerie');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('m_serie');
+    }
+    public function index()
+    {
+        $this->cadastrar();
+    }
+
+    public function listar ()
+    {
+        $data['dados'] = $this->serie->get();
+
+    }
+
+    public function cadastrar () {
+        $this->load->model('m_curso');
+        $data['resultado'] = $this->m_curso->get()->result_array();
+        $this->load->view('cadSerie', $data);
+    }
+
+    public function store()
+    {
+
+        $this->load->library('form_validation');
+//        $regras = array();
+        $regras = array(
+            array(
+                'field' => 'nome',
+                'label' => 'Nome',
+                'rules' => 'required'
+            )
+        );
+//
+        $this->form_validation->set_rules($regras);
+
+        if ($this->form_validation->run() == FALSE) {
+            $variaveis['titulo'] = 'Novo Registro';
+            $this->load->view('cadSerie', $variaveis);
+        } else {
+
+            $id = $this->input->post('id');
+
+            $dados = array(
+                "nome" => $this->input->post('nome'),
+                "periodo_letivo" => $this->input->post('periodo'),
+                "curso_id" => (integer) $this->input->post('id_curso')
+
+            );
+            if ($this->m_serie->store($dados, $id)) {
+                $variaveis['mensagem'] = "Dados gravados com sucesso!";
+//                $this->load->view('v_sucesso', $variaveis);
+                var_dump('succes');exit;
+            } else {
+                $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+//                $this->load->view('errors/html/v_erro', $variaveis);
+            }
+
+        }
+    }
 }
