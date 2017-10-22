@@ -6,7 +6,7 @@
  * Time: 13:42
  */
 
-class Notas extends CI_Model
+class m_notas extends CI_Model
 {
     private $tabel = 'notas';
 

@@ -41,7 +41,7 @@ class m_serie extends CI_Model
         if ($id) {
             $this->db->where('id', $id);
         }
-        $this->db->order_by("id", 'desc');
+        $this->db->order_by("ser_id_serie", 'desc');
         return $this->db->get($this->tabel);
     }
 
