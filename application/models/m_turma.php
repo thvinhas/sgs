@@ -8,7 +8,7 @@
 
 class m_turma extends CI_Model
 {
-    private $tabel = 'tur_turma';
+    private $tabel = 'turma';
 
     public function __construct()
     {

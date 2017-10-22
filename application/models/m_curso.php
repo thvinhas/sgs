@@ -8,7 +8,7 @@
 
 class m_curso extends CI_Model
 {
-    private $tabel = 'crs_curso';
+    private $tabel = 'curso';
 
     public function __construct()
     {

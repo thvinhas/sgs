@@ -7,7 +7,7 @@ include('include/header.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Cadastro de Aluno</h1>
+                    <h1 class="page-header">Cadastro de Turmas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -21,43 +21,26 @@ include('include/header.php');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php echo  form_open('turma/store')  ?>
+
+                                        <div class="form-group">
+                                            <label>Nome:</label>
+                                            <input class="form-control" name="nome" placeholder="Digite nome...">
+                                            <p class="help-block"></p>
+                                        </div>
+
                                         <div class="form-group">
                                             <label>Série</label>
                                             <select name="id_serie" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php foreach ($resultado as $result): ?>
+                                                    <option value="<?php echo $result['id'] ?>"><?php echo $result['nome']?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Disciplina</label>
-                                            <select name="id_disciplina" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Professor</label>
-                                            <select name="id_professor" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
+                                        <button type="submit" class="btn btn-default">Cadastrar Turma</button>
+                                        <button type="reset" class="btn btn-default">Limpar</button>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->

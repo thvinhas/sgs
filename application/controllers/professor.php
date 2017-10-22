@@ -28,6 +28,27 @@ class Professor extends CI_Controller {
 	{
 		$this->load->view('cadProfessor');
 	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('m_professor');
+    }
+//    public function index()
+//    {
+//        $this->cadastrar();
+//    }
+
+    public function listar ()
+    {
+        $data['dados'] = $this->professor->get();
+
+    }
+
+//    public function cadastrar () {
+//        $this->load->model('m_curso');
+//        $data['resultado'] = $this->m_curso->get()->result_array();
+//        $this->load->view('cadSerie', $data);
+//    }
 
     public function store()
     {
@@ -36,8 +57,8 @@ class Professor extends CI_Controller {
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'id_disciplina',
-                'label' => 'Disciplina',
+                'field' => 'nome',
+                'label' => 'Nome',
                 'rules' => 'required'
             )
         );
@@ -46,18 +67,17 @@ class Professor extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAluno', $variaveis);
+            $this->load->view('cadProfessor', $variaveis);
         } else {
-//            var_dump('hue');exit();
-            $id = $this->input->post('id');
 
             $dados = array(
-                "aul_id_disciplina" => $this->input->post('id_disciplina'),
-                "aul_dt_aula" => $this->input->post('data_aula'),
-                "tur_turma_tur_id_serie" => $this->input->post('id_turma')
-            );
+                "matricula" => $this->input->post('matricula'),
+                "nome" => $this->input->post('nome'),
+                "cpf_professor" => (integer) $this->input->post('cpf'),
+                "email" => $this->input->post('email')
 
-            if ($this->m_aluno->store($dados, $id)) {
+            );
+            if ($this->m_professor->store($dados)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

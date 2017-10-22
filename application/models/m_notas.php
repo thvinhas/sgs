@@ -8,7 +8,7 @@
 
 class m_notas extends CI_Model
 {
-    private $tabel = 'not_notas';
+    private $tabel = 'notas';
 
     public function __construct()
     {

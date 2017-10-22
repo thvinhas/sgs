@@ -8,7 +8,7 @@
 
 class m_professor extends CI_Model
 {
-    private $tabel = 'pro_professor';
+    private $tabel = 'professor';
 
     public function __construct()
     {

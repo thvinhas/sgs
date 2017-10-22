@@ -8,7 +8,7 @@
 
 class m_serie extends CI_Model
 {
-    private $tabel = 'ser_serie';
+    private $tabel = 'serie';
 
     public function __construct()
     {

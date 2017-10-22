@@ -28,12 +28,22 @@ class Curso extends CI_Controller {
         parent::__construct();
         $this->load->model('m_curso');
     }
+//    public function index()
+//    {
+//        $this->cadastrar();
+//    }
 
     public function listar ()
     {
-        $data['dados'] = $this->aula->get();
+        $data['dados'] = $this->curso->get();
 
     }
+
+//    public function cadastrar () {
+//        $this->load->model('m_curso');
+//        $data['resultado'] = $this->m_curso->get()->result_array();
+//        $this->load->view('cadSerie', $data);
+//    }
 
     public function store()
     {
@@ -42,8 +52,8 @@ class Curso extends CI_Controller {
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'id_disciplina',
-                'label' => 'Disciplina',
+                'field' => 'nome_curso',
+                'label' => 'Nome',
                 'rules' => 'required'
             )
         );
@@ -52,18 +62,17 @@ class Curso extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAluno', $variaveis);
+            $this->load->view('cadCurso', $variaveis);
         } else {
-//            var_dump('hue');exit();
+
             $id = $this->input->post('id');
 
             $dados = array(
-                "aul_id_disciplina" => $this->input->post('id_disciplina'),
-                "aul_dt_aula" => $this->input->post('data_aula'),
-                "tur_turma_tur_id_serie" => $this->input->post('id_turma')
-            );
+                "nome_curso" => $this->input->post('nome_curso'),
+                "valor_curso" => (integer) $this->input->post('valor_curso')
 
-            if ($this->m_aluno->store($dados, $id)) {
+            );
+            if ($this->m_curso->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

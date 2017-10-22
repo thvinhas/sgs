@@ -21,7 +21,7 @@ include('include/header.php');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php echo  form_open('curso/store')  ?>
                                         <div class="form-group">
                                             <label>Nome do curso:</label>
                                             <input class="form-control" name="nome_curso" placeholder="Digite nome...">
@@ -34,22 +34,11 @@ include('include/header.php');
                                             <input type="text" name="valor_curso" class="form-control">
                                             <span class="input-group-addon">,00</span>
                                         </div>
-                                    
-                                        <div class="form-group">
-                                            <label>Turma</label>
-                                            <select name="id_turma" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
 
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                   
-                                   </form>
+                                        <button type="submit" class="btn btn-default">Cadastrar Curso</button>
+                                        <button type="reset" class="btn btn-default">Limpar</button>
+
+                                    <?php echo form_close(); ?>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

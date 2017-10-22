@@ -8,7 +8,7 @@
 
 class m_aula extends CI_Model
 {
-    private $tabel = 'aul_aula';
+    private $tabel = 'aula';
 
     public function __construct()
     {

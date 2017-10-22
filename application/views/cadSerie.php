@@ -21,37 +21,31 @@ include('include/header.php');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php echo  form_open('serie/store')  ?>
                                         <div class="form-group">
                                             <label>Descrição:</label>
-                                            <input class="form-control" name="descricao" placeholder="">
+                                            <input class="form-control" name="nome" placeholder="">
                                             <p class="help-block"></p>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Curso</label>
                                             <select name="id_curso" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php foreach ($resultado as $result): ?>
+                                                    <option value="<?php echo $result['id'] ?>"><?php echo $result['nome_curso']?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Período Letivo</label>
-                                            <select name="periodo" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            <label>Período Letivo:</label>
+                                            <input class="form-control" name="periodo" placeholder="">
+                                            <p class="help-block"></p>
                                         </div>
+
                                         <button type="submit" class="btn btn-default">Cadastrar Série</button>
                                         <button type="reset" class="btn btn-default">Limpar</button>
-                                    </form>
+                                    <?php echo form_close(); ?>
                                 </div>
                             </div>
                             <!-- /.row (nested) -->
