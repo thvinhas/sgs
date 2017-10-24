@@ -28,15 +28,6 @@ class Professor extends CI_Controller {
 	{
 		$this->load->view('cadProfessor');
 	}
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('m_professor');
-    }
-//    public function index()
-//    {
-//        $this->cadastrar();
-//    }
 
     public function listar ()
     {

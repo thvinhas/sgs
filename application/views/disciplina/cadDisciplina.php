@@ -21,6 +21,7 @@ include('include/header.php');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
+                                    <?php echo  form_open('disciplina/store')  ?>
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Nome:</label>
@@ -34,11 +35,9 @@ include('include/header.php');
                                         <div class="form-group">
                                             <label>Curso</label>
                                             <select name="id_curso" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <?php foreach ($cursos as $curso): ?>
+                                                  <option value="<?php echo $curso['id'] ?>"><?php echo $curso['nome_curso'] ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
 

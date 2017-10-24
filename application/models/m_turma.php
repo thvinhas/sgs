@@ -38,11 +38,15 @@ class m_turma extends CI_Model
 
     public function get($id = null){
 
+            $this->db->select('turma.id,turma.nome,serie.nome as serie');
+        $this->db->from($this->tabel);
+        $this->db->join('serie', 'turma.serie_id = serie.id');
         if ($id) {
-            $this->db->where('id', $id);
+            $this->db->where('turma.id', $id);
         }
-        $this->db->order_by("id", 'desc');
-        return $this->db->get($this->tabel);
+        $this->db->order_by("turma.id", 'desc');
+//        var_dump($this->db->last_query());exit();
+        return $this->db->get();
     }
 
     public function delete($id = null){

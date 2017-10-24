@@ -30,7 +30,7 @@ class Curso extends CI_Controller {
     }
 //    public function index()
 //    {
-//        $this->cadastrar();
+//
 //    }
 
     public function listar ()

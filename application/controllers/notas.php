@@ -27,8 +27,17 @@ class Notas extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('cadNotas');
+		$this->cadastrar();
 	}
+
+    public function cadastrar () {
+        $this->load->model('m_turma');
+        $this->load->model('m_disciplina');
+        $data['turmas'] = $this->m_turma->get()->result_array();
+        $data['disciplinas'] = $this->m_disciplina->get()->result_array();
+        $this->load->view('cadNotas', $data);
+    }
+
 
     public function store()
     {
@@ -53,9 +62,13 @@ class Notas extends CI_Controller {
             $id = $this->input->post('id');
 
             $dados = array(
-                "aul_id_disciplina" => $this->input->post('id_disciplina'),
-                "aul_dt_aula" => $this->input->post('data_aula'),
-                "tur_turma_tur_id_serie" => $this->input->post('id_turma')
+                "id_disciplina" => $this->input->post('id_disciplina'),
+                "id_turma" => $this->input->post('data_aula'),
+                "unidade" => $this->input->post('id_turma'),
+                "nota" => $this->input->post('id_turma'),
+                "matricula_aluno" => $this->input->post('id_turma')
+
+
             );
 
             if ($this->m_aluno->store($dados, $id)) {

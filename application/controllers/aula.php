@@ -26,7 +26,7 @@ class Aula extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('cadAula');
+		$this->cadastrar();
 	}
 
     public function listar ()
@@ -34,6 +34,18 @@ class Aula extends CI_Controller {
         $data['dados'] = $this->aula->get();
 
     }
+
+    public function cadastrar () {
+        $this->load->model('m_turma');
+        $this->load->model('m_disciplina');
+
+        //        var_dump($this->m_turma->get()->result());exit();
+        $data['turmas'] = $this->m_turma->get()->result_array();
+        $data['disciplinas'] = $this->m_disciplina->get()->result_array();
+
+        $this->load->view('cadAula', $data);
+    }
+
 
     public function store()
     {
@@ -51,20 +63,20 @@ class Aula extends CI_Controller {
         $this->form_validation->set_rules($regras);
 
         if ($this->form_validation->run() == FALSE) {
-            var_dump('hue');exit();
+//            var_dump('hue');exit();
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAluno', $variaveis);
+            $this->load->view('cadAula', $variaveis);
         } else {
 //            var_dump('hue');exit();
             $id = $this->input->post('id');
 
             $dados = array(
-                "aul_id_disciplina" => $this->input->post('id_disciplina'),
-                "aul_dt_aula" => $this->input->post('data_aula'),
-                "tur_turma_tur_id_serie" => $this->input->post('id_turma')
+                "id_disciplina" => $this->input->post('id_disciplina'),
+                "dia_aula" => $this->input->post('data_aula'),
+                "id_turma" => $this->input->post('id_turma'),
             );
 
-            if ($this->m_aluno->store($dados, $id)) {
+            if ($this->m_aula->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

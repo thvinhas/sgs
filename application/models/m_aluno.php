@@ -39,9 +39,9 @@ class m_aluno extends CI_Model
     public function get($id = null){
 
         if ($id) {
-            $this->db->where('id', $id);
+            $this->db->where('matricula', $id);
         }
-        $this->db->order_by("id", 'desc');
+        $this->db->order_by("matricula", 'desc');
         return $this->db->get($this->tabel);
     }
 

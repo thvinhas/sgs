@@ -40,7 +40,7 @@ include('include/header.php');
                                         <label>Turma</label>
                                         <select class="form-control" name="turma">
                                             <?php foreach ($resultado as $result): ?>
-                                                <option value="<?php echo $result['id'] ?>"><?php echo $result['nome']?></option>
+                                                <option value="<?php echo $result['id'] ?>"><?php echo  $result['nome']?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

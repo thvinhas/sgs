@@ -7,7 +7,7 @@ include('include/header.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Cadastro de Aulas</h1>
+                    <h1 class="page-header">Cadastro de Notas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -16,15 +16,33 @@ include('include/header.php');
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Informe os dados da aula
+                            Cadastro
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <?php echo  form_open('notas/store')  ?>
                                         <div class="form-group">
                                             <label>Disciplina</label>
                                             <select name="id_disciplina" class="form-control">
+                                                <?php foreach ($disciplinas as $disciplina):    ?>
+                                                    <option value="<?php echo $disciplina['id']?>"><?php echo $disciplina['nm_disciplina']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Turma</label>
+                                            <select name="id_turma" class="form-control">
+                                                <?php foreach ($turmas as $turma):    ?>
+                                                    <option value="<?php echo $turma['id']?>"><?php echo $turma['serie'] ."º". $turma['nome']?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Unidade</label>
+                                            <select name="unidade" class="form-control">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -34,27 +52,15 @@ include('include/header.php');
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Turma</label>
-                                            <select name="id_turma" class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            <label>Nota:</label>
+                                            <input class="form-control" name="nota" placeholder="">
+                                            <p class="help-block"></p>
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <label>Data da Aula:</label>
-                                            <input class="form-control" type="date" name="data_aula">
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-default">Cadastrar</button>
+
+                                        <button type="submit" class="btn btn-default">Cadastrar Nota</button>
                                         <button type="reset" class="btn btn-default">Limpar</button>
-                                   
-                                   </form>
+                                    <?php echo form_close(); ?>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
                             </div>
                             <!-- /.row (nested) -->
                         </div>

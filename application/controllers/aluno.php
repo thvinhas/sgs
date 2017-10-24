@@ -26,19 +26,22 @@ class Aluno extends CI_Controller {
     }
 	public function index()
 	{
-        $this->cadastrar();
+        $this->listar();
 	}
 
 	public function listar ()
     {
-	    $data['dados'] = $this->aluno->get();
+	    $data['alunos'] = $this->m_aluno->get()->result();
+        $this->load->view('aluno/listAluno', $data);
 
     }
 
     public function cadastrar () {
         $this->load->model('m_turma');
+
+//        var_dump($this->m_turma->get()->result());exit();
         $data['resultado'] = $this->m_turma->get()->result_array();
-        $this->load->view('cadAluno', $data);
+        $this->load->view('aluno/cadAluno', $data);
     }
 
     public function store()
@@ -57,7 +60,7 @@ class Aluno extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAluno', $variaveis);
+            $this->load->view('aluno/cadAluno', $variaveis);
         } else {
 //            var_dump('hue');exit();
             $id = $this->input->post('id');
@@ -83,15 +86,5 @@ class Aluno extends CI_Controller {
             }
 
         }
-    }
-
-    public function cadastrar() {
-        $this->load->model('m_serie');
-        $data= array();
-        $series = $this->m_serie->get();
-        $data['series'] = $series->result();
-//        var_dump($series->result());exit();
-
-        $this->load->view('cadAluno',$data);
     }
 }
