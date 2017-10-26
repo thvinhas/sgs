@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class m_aula extends CI_Model
+class M_aluno extends CI_Model
 {
-    private $tabel = 'aula';
+    private $tabel = 'aluno';
 
     public function __construct()
     {
@@ -17,10 +17,10 @@ class m_aula extends CI_Model
 
     public function store($dados = null, $id = null)
     {
-
+//var_dump('hue');exit();
         if ($dados) {
             if ($id) {
-                $this->db->where('id', $id);
+                $this->db->where('matricula', $id);
                 if ($this->db->update($this->tabel, $dados)) {
                     return true;
                 } else {
@@ -39,15 +39,15 @@ class m_aula extends CI_Model
     public function get($id = null){
 
         if ($id) {
-            $this->db->where('id', $id);
+            $this->db->where('matricula', $id);
         }
-        $this->db->order_by("id", 'desc');
+        $this->db->order_by("matricula", 'desc');
         return $this->db->get($this->tabel);
     }
 
     public function delete($id = null){
         if ($id) {
-            return $this->db->where('id', $id)->delete($this->tabel);
+            return $this->db->where('matricula', $id)->delete($this->tabel);
         }
     }
 

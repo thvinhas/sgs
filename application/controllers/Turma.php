@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Professor extends CI_Controller {
+class Turma extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,28 +18,32 @@ class Professor extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+//	public function index()
+//	{
+//		$this->load->view('cadTurma');
+//	}
+
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_professor');
+        $this->load->model('M_turma');
     }
-
-	public function index()
-	{
-		$this->load->view('cadProfessor');
-	}
+    public function index()
+    {
+        $this->cadastrar();
+    }
 
     public function listar ()
     {
-        $data['dados'] = $this->professor->get();
+        $data['dados'] = $this->turma->get();
 
     }
 
-//    public function cadastrar () {
-//        $this->load->model('m_curso');
-//        $data['resultado'] = $this->m_curso->get()->result_array();
-//        $this->load->view('cadSerie', $data);
-//    }
+    public function cadastrar () {
+        $this->load->model('M_serie');
+        $data['resultado'] = $this->M_serie->get()->result_array();
+        $this->load->view('turma/cadTurma', $data);
+    }
 
     public function store()
     {
@@ -58,17 +62,17 @@ class Professor extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadProfessor', $variaveis);
+            $this->load->view('turma/cadTurma', $variaveis);
         } else {
 
+            $id = $this->input->post('id');
+
             $dados = array(
-                "matricula" => $this->input->post('matricula'),
                 "nome" => $this->input->post('nome'),
-                "cpf_professor" => (integer) $this->input->post('cpf'),
-                "email" => $this->input->post('email')
+                "serie_id" => (integer) $this->input->post('id_serie')
 
             );
-            if ($this->m_professor->store($dados)) {
+            if ($this->M_turma->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

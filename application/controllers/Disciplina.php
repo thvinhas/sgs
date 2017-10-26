@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Notas extends CI_Controller {
+class Disciplina extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,22 +22,19 @@ class Notas extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_notas');
+        $this->load->model('M_disciplina');
     }
-
 	public function index()
 	{
 		$this->cadastrar();
 	}
 
     public function cadastrar () {
-        $this->load->model('m_turma');
-        $this->load->model('m_disciplina');
-        $data['turmas'] = $this->m_turma->get()->result_array();
-        $data['disciplinas'] = $this->m_disciplina->get()->result_array();
-        $this->load->view('cadNotas', $data);
-    }
+        $this->load->model('M_curso');
 
+        $data['cursos'] = $this->M_curso->get()->result_array();
+        $this->load->view('disciplina/cadDisciplina', $data);
+    }
 
     public function store()
     {
@@ -46,7 +43,7 @@ class Notas extends CI_Controller {
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'id_disciplina',
+                'field' => 'nome',
                 'label' => 'Disciplina',
                 'rules' => 'required'
             )
@@ -56,22 +53,18 @@ class Notas extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAluno', $variaveis);
+            $this->load->view('disciplina/cadDisciplina', $variaveis);
         } else {
 //            var_dump('hue');exit();
             $id = $this->input->post('id');
 
             $dados = array(
-                "id_disciplina" => $this->input->post('id_disciplina'),
-                "id_turma" => $this->input->post('data_aula'),
-                "unidade" => $this->input->post('id_turma'),
-                "nota" => $this->input->post('id_turma'),
-                "matricula_aluno" => $this->input->post('id_turma')
-
-
+                "nm_disciplina" => $this->input->post('nome'),
+                "carga_horaria" => $this->input->post('c_h'),
+                "id_curso" => $this->input->post('id_curso')
             );
-
-            if ($this->m_aluno->store($dados, $id)) {
+//                var_dump($dados);exit();
+            if ($this->M_disciplina->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

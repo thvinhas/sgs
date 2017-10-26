@@ -6,9 +6,9 @@
  * Time: 13:42
  */
 
-class m_serie extends CI_Model
+class M_professor extends CI_Model
 {
-    private $tabel = 'serie';
+    private $tabel = 'professor';
 
     public function __construct()
     {
@@ -41,7 +41,7 @@ class m_serie extends CI_Model
         if ($id) {
             $this->db->where('id', $id);
         }
-        $this->db->order_by(" id", 'desc');
+        $this->db->order_by("id", 'desc');
         return $this->db->get($this->tabel);
     }
 

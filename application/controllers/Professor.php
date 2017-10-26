@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Curso extends CI_Controller {
+class Professor extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,30 +18,26 @@ class Curso extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('cadCurso');
-	}
-
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_curso');
+        $this->load->model('M_professor');
     }
-//    public function index()
-//    {
-//
-//    }
+
+	public function index()
+	{
+		$this->load->view('professor/cadProfessor');
+	}
 
     public function listar ()
     {
-        $data['dados'] = $this->curso->get();
+        $data['dados'] = $this->professor->get();
 
     }
 
 //    public function cadastrar () {
-//        $this->load->model('m_curso');
-//        $data['resultado'] = $this->m_curso->get()->result_array();
+//        $this->load->model('M_curso');
+//        $data['resultado'] = $this->M_curso->get()->result_array();
 //        $this->load->view('cadSerie', $data);
 //    }
 
@@ -52,7 +48,7 @@ class Curso extends CI_Controller {
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'nome_curso',
+                'field' => 'nome',
                 'label' => 'Nome',
                 'rules' => 'required'
             )
@@ -62,17 +58,17 @@ class Curso extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadCurso', $variaveis);
+            $this->load->view('professor/cadProfessor', $variaveis);
         } else {
 
-            $id = $this->input->post('id');
-
             $dados = array(
-                "nome_curso" => $this->input->post('nome_curso'),
-                "valor_curso" => (integer) $this->input->post('valor_curso')
+                "matricula" => $this->input->post('matricula'),
+                "nome" => $this->input->post('nome'),
+                "cpf_professor" => (integer) $this->input->post('cpf'),
+                "email" => $this->input->post('email')
 
             );
-            if ($this->m_curso->store($dados, $id)) {
+            if ($this->M_professor->store($dados)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Aluno extends CI_Controller {
+class Curso extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,39 +18,41 @@ class Aluno extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function index()
+	{
+		$this->load->view('curso/cadCurso');
+	}
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_aluno');
+        $this->load->model('M_curso');
     }
-	public function index()
-	{
-        $this->listar();
-	}
+//    public function index()
+//    {
+//
+//    }
 
-	public function listar ()
+    public function listar ()
     {
-	    $data['alunos'] = $this->m_aluno->get()->result();
-        $this->load->view('aluno/listAluno', $data);
+        $data['dados'] = $this->curso->get();
 
     }
 
-    public function cadastrar () {
-        $this->load->model('m_turma');
-
-//        var_dump($this->m_turma->get()->result());exit();
-        $data['resultado'] = $this->m_turma->get()->result_array();
-        $this->load->view('aluno/cadAluno', $data);
-    }
+//    public function cadastrar () {
+//        $this->load->model('M_curso');
+//        $data['resultado'] = $this->M_curso->get()->result_array();
+//        $this->load->view('cadSerie', $data);
+//    }
 
     public function store()
     {
+
         $this->load->library('form_validation');
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'nome',
+                'field' => 'nome_curso',
                 'label' => 'Nome',
                 'rules' => 'required'
             )
@@ -60,23 +62,17 @@ class Aluno extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('aluno/cadAluno', $variaveis);
+            $this->load->view('curso/cadCurso', $variaveis);
         } else {
-//            var_dump('hue');exit();
+
             $id = $this->input->post('id');
 
             $dados = array(
-                "nome" => $this->input->post('nome'),
-                "data_nascimento" => $this->input->post('data_nasc_aluno'),
-                "rg_aluno" => $this->input->post('rg_aluno'),
-                "nome_mae" => $this->input->post('mae_aluno'),
-                "cpf_mae" => $this->input->post('CPF_mae_aluno'),
-                "cpf_pai" => $this->input->post('CPF_pai_aluno'),
-                "nome_pai" => $this->input->post('pai_aluno'),
-                "serie_id" => (integer) $this->input->post('turma')
+                "nome_curso" => $this->input->post('nome_curso'),
+                "valor_curso" => (integer) $this->input->post('valor_curso')
 
             );
-            if ($this->m_aluno->store($dados, $id)) {
+            if ($this->M_curso->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

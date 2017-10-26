@@ -1,5 +1,5 @@
 <?php
-include('include/header.php');
+$this->load->view('include/header.php');
 ?>
 
     <div id="wrapper">
@@ -64,5 +64,5 @@ include('include/header.php');
     <!-- /#wrapper -->
 
 <?php
-include('include/footer.php');
+$this->load->view('include/footer.php');
 ?>

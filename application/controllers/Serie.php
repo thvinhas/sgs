@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Aula extends CI_Controller {
+class Serie extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,34 +18,27 @@ class Aula extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_aula');
+        $this->load->model('M_serie');
     }
-	public function index()
-	{
-		$this->cadastrar();
-	}
+    public function index()
+    {
+        $this->cadastrar();
+    }
 
     public function listar ()
     {
-        $data['dados'] = $this->aula->get();
+        $data['dados'] = $this->serie->get();
 
     }
 
     public function cadastrar () {
-        $this->load->model('m_turma');
-        $this->load->model('m_disciplina');
-
-        //        var_dump($this->m_turma->get()->result());exit();
-        $data['turmas'] = $this->m_turma->get()->result_array();
-        $data['disciplinas'] = $this->m_disciplina->get()->result_array();
-
-        $this->load->view('cadAula', $data);
+        $this->load->model('M_curso');
+        $data['resultado'] = $this->M_curso->get()->result_array();
+        $this->load->view('serie/cadSerie', $data);
     }
-
 
     public function store()
     {
@@ -54,8 +47,8 @@ class Aula extends CI_Controller {
 //        $regras = array();
         $regras = array(
             array(
-                'field' => 'id_disciplina',
-                'label' => 'Disciplina',
+                'field' => 'nome',
+                'label' => 'Nome',
                 'rules' => 'required'
             )
         );
@@ -63,20 +56,19 @@ class Aula extends CI_Controller {
         $this->form_validation->set_rules($regras);
 
         if ($this->form_validation->run() == FALSE) {
-//            var_dump('hue');exit();
             $variaveis['titulo'] = 'Novo Registro';
-            $this->load->view('cadAula', $variaveis);
+            $this->load->view('serie/cadSerie', $variaveis);
         } else {
-//            var_dump('hue');exit();
+
             $id = $this->input->post('id');
 
             $dados = array(
-                "id_disciplina" => $this->input->post('id_disciplina'),
-                "dia_aula" => $this->input->post('data_aula'),
-                "id_turma" => $this->input->post('id_turma'),
-            );
+                "nome" => $this->input->post('nome'),
+                "periodo_letivo" => $this->input->post('periodo'),
+                "curso_id" => (integer) $this->input->post('id_curso')
 
-            if ($this->m_aula->store($dados, $id)) {
+            );
+            if ($this->M_serie->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;
