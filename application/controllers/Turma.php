@@ -30,18 +30,45 @@ class Turma extends CI_Controller {
     }
     public function index()
     {
-        $this->cadastrar();
+        $this->listar();
     }
 
     public function listar ()
     {
-        $data['dados'] = $this->turma->get();
+        $data['turmas'] = $this->M_turma->get()->result();
+//                         var_dump($data);exit();
+        $this->load->view('turma/listTurma',$data);
 
+    }
+    
+    public function apagar()
+    {
+        $id = $this->input->post('id');
+        
+        if ($this->M_turma->delete($id)) {
+            $variaveis['mensagem'] = "Dados gravados com sucesso!";
+            // $this->load->view('v_sucesso', $variaveis);
+            var_dump('succes');
+            exit();
+        } else {
+            $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+            // $this->load->view('errors/html/v_erro', $variaveis);
+        }
     }
 
     public function cadastrar () {
         $this->load->model('M_serie');
         $data['resultado'] = $this->M_serie->get()->result_array();
+        $this->load->view('turma/cadTurma', $data);
+    }
+    
+    public function editar () {
+        $this->load->model('M_serie');
+        
+        $id = $this->input->post('id');
+        $data = $this->M_turma->get($id)->result_array()[0];
+        $data['resultado'] = $this->M_serie->get()->result_array();
+//         var_dump($data);exit();
         $this->load->view('turma/cadTurma', $data);
     }
 

@@ -22,9 +22,10 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('serie/store')  ?>
+                                    <input name="id" value="<?php echo $id?>" type="hidden">
                                         <div class="form-group">
                                             <label>Descrição:</label>
-                                            <input class="form-control" name="nome" placeholder="">
+                                            <input class="form-control" name="nome" placeholder="" value="<?php echo $nome?>">
                                             <p class="help-block"></p>
                                         </div>
 
@@ -32,14 +33,18 @@ $this->load->view('include/header.php');
                                             <label>Curso</label>
                                             <select name="id_curso" class="form-control">
                                                 <?php foreach ($resultado as $result): ?>
-                                                    <option value="<?php echo $result['id'] ?>"><?php echo $result['nome_curso']?></option>
+                                                	<?php if($result['id'] == $curso_id): ?>
+                                                   		<option value="<?php echo $result['id'] ?>" selected><?php echo $result['nome_curso']?></option>
+                                                    <?php else :?>
+                                                    	<option value="<?php echo $result['id'] ?>"><?php echo $result['nome_curso']?></option>
+                                                	<?php endif;?>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Período Letivo:</label>
-                                            <input class="form-control" name="periodo" placeholder="">
+                                            <input class="form-control" name="periodo" placeholder="" value="<?php echo $periodo_letivo?>">
                                             <p class="help-block"></p>
                                         </div>
 

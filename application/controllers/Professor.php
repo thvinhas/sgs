@@ -26,20 +26,43 @@ class Professor extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('professor/cadProfessor');
+		$this->listar();
 	}
 
     public function listar ()
     {
-        $data['dados'] = $this->professor->get();
+        $data['professores'] = $this->M_professor->get()->result();
+//         var_dump($data);exit();
+        $this->load->view('professor/listProfessor',$data);
 
     }
+    public function editar()
+    {
+              
+        $id = $this->input->post('id');
+        $dados = $this->M_professor->get($id)->result_array()[0];
+//                 var_dump($dados);exit();
+        $this->load->view('professor/cadProfessor', $dados);
+    }
+    
+    public function apagar()
+    {
+        $id = $this->input->post('id');
+        
+        if ($this->M_professor->delete($id)) {
+            $variaveis['mensagem'] = "Dados gravados com sucesso!";
+            // $this->load->view('v_sucesso', $variaveis);
+            var_dump('succes');
+            exit();
+        } else {
+            $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+            // $this->load->view('errors/html/v_erro', $variaveis);
+        }
+    }
 
-//    public function cadastrar () {
-//        $this->load->model('M_curso');
-//        $data['resultado'] = $this->M_curso->get()->result_array();
-//        $this->load->view('cadSerie', $data);
-//    }
+   public function cadastrar () {
+       $this->load->view('professor/cadProfessor');
+   }
 
     public function store()
     {
@@ -60,7 +83,7 @@ class Professor extends CI_Controller {
             $variaveis['titulo'] = 'Novo Registro';
             $this->load->view('professor/cadProfessor', $variaveis);
         } else {
-
+            $id = $this->input->post('id'); 
             $dados = array(
                 "matricula" => $this->input->post('matricula'),
                 "nome" => $this->input->post('nome'),
@@ -68,7 +91,7 @@ class Professor extends CI_Controller {
                 "email" => $this->input->post('email')
 
             );
-            if ($this->M_professor->store($dados)) {
+            if ($this->M_professor->store($dados, $id)) {
                 $variaveis['mensagem'] = "Dados gravados com sucesso!";
 //                $this->load->view('v_sucesso', $variaveis);
                 var_dump('succes');exit;

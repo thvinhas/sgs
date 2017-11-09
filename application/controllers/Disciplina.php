@@ -26,7 +26,7 @@ class Disciplina extends CI_Controller {
     }
 	public function index()
 	{
-		$this->cadastrar();
+		$this->listar();
 	}
 
     public function cadastrar () {
@@ -34,6 +34,39 @@ class Disciplina extends CI_Controller {
 
         $data['cursos'] = $this->M_curso->get()->result_array();
         $this->load->view('disciplina/cadDisciplina', $data);
+    }
+    
+    public function listar()
+    {
+        $data['disciplinas'] = $this->M_disciplina->get()->result();
+        
+        $this->load->view('disciplina/listDisciplina', $data);
+    }
+    
+    public function editar()
+    {
+        $this->load->model('M_curso');
+        
+        $id = $this->input->post('id');
+        $dados = $this->M_disciplina->get($id)->result_array()[0];
+        $dados['cursos'] = $this->M_curso->get()->result_array();
+//                 var_dump($dados);exit();
+        $this->load->view('disciplina/cadDisciplina', $dados);
+    }
+    
+    public function apagar()
+    {
+        $id = $this->input->post('id');
+        
+        if ($this->M_disciplina->delete($id)) {
+            $variaveis['mensagem'] = "Dados gravados com sucesso!";
+            // $this->load->view('v_sucesso', $variaveis);
+            var_dump('succes');
+            exit();
+        } else {
+            $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+            // $this->load->view('errors/html/v_erro', $variaveis);
+        }
     }
 
     public function store()

@@ -31,9 +31,9 @@ class Notas extends CI_Controller {
 	}
 
     public function cadastrar () {
-        $this->load->model('M_turma');
+//         $this->load->model('M_turma');
         $this->load->model('M_disciplina');
-        $data['turmas'] = $this->M_turma->get()->result_array();
+//         $data['turmas'] = $this->M_turma->get()->result_array();
         $data['disciplinas'] = $this->M_disciplina->get()->result_array();
         $this->load->view('notas/cadNotas', $data);
     }
@@ -81,5 +81,13 @@ class Notas extends CI_Controller {
             }
 
         }
+    }
+
+    public function obterTurmasDaDisciplina() {
+      $disciplina =  $this->input->post('id_disciplina');
+      $this->load->model('M_aula');
+      $data =  $this->M_aula->getTurmaByDisciplina($disciplina)->result_array();
+//          var_dump($data);exit();
+      echo json_encode($data);
     }
 }

@@ -50,6 +50,18 @@ class M_aula extends CI_Model
             return $this->db->where('id', $id)->delete($this->tabel);
         }
     }
+    
+    public function getTurmaByDisciplina($disciplina){
+        
+        $this->db->select('turma.id,turma.nome,serie.nome as serie,serie.id as idSerie');
+        $this->db->from($this->tabel);
+        $this->db->join('turma', 'turma.id = aula.id_turma');
+        $this->db->join('serie', 'turma.serie_id = serie.id');
+        $this->db->where('aula.id_disciplina', $disciplina);
+        $this->db->order_by("turma.id", 'desc');
+        //        var_dump($this->db->last_query());exit();
+        return $this->db->get();
+    }
 
 
 }

@@ -22,10 +22,10 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('turma/store')  ?>
-
+										<input type="hidden" name="id" value="<?php echo $id?>">
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome...">
+                                            <input class="form-control" name="nome" placeholder="Digite nome..."value="<?php echo $nome?>">
                                             <p class="help-block"></p>
                                         </div>
 
@@ -33,7 +33,11 @@ $this->load->view('include/header.php');
                                             <label>Série</label>
                                             <select name="id_serie" class="form-control">
                                                 <?php foreach ($resultado as $result): ?>
-                                                    <option value="<?php echo $result['id'] ?>"><?php echo $result['nome']?></option>
+                                                	<?php if ($result['id'] == $idSerie):?>
+                                                    	<option value="<?php echo $result['id'] ?>" selected><?php echo $result['nome']?></option>
+                                                    <?php else:?>
+                                                  		<option value="<?php echo $result['id'] ?>"><?php echo $result['nome']?></option>
+                                                   	<?php endif;?>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

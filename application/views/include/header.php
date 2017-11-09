@@ -8,6 +8,15 @@
         <link rel="stylesheet" href="<?php echo base_url('dist/css/sb-admin-2.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('vendor/font-awesome/css/font-awesome.min.css'); ?>">
         
+        <script rel="text/javascript" src="<?php echo base_url('vendor/jquery/jquery.min.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('vendor/metisMenu/metisMenu.min.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('dist/js/sb-admin-2.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('data/morris-data.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('vendor/morrisjs/morris.min.js') ?>"></script>
+        <script rel="text/javascript" src="<?php echo base_url('vendor/raphael/raphael.min.js') ?>"></script>
+    
+        
     </head>
 
     <body>

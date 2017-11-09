@@ -22,24 +22,25 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('professor/store')  ?>
+                                    <input type="hidden" value="<?php echo $matricula?>" name="id">
                                         <div class="form-group">
                                             <label>Matricula:</label>
-                                            <input class="form-control" name="matricula" placeholder="Digite a matricula...">
+                                            <input class="form-control" name="matricula" placeholder="Digite a matricula..." value="<?php echo $matricula?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome...">
+                                            <input class="form-control" name="nome" placeholder="Digite nome..." value="<?php echo $nome?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>CPF:</label>
-                                            <input class="form-control" name="cpf" placeholder="">
+                                            <input class="form-control" name="cpf" placeholder="" value="<?php echo $cpf_professor?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Email:</label>
-                                            <input class="form-control" name="email" placeholder="Digite o email...">
+                                            <input class="form-control" name="email" placeholder="Digite o email..." value="<?php echo $email?>">
                                             <p class="help-block"></p>
                                         </div>
 

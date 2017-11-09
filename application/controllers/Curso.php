@@ -20,7 +20,7 @@ class Curso extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('curso/cadCurso');
+	   $this->listar();
 	}
 
     public function __construct()
@@ -35,15 +35,42 @@ class Curso extends CI_Controller {
 
     public function listar ()
     {
-        $data['dados'] = $this->curso->get();
+        $data['cursos'] = $this->M_curso->get()->result();
+//         var_dump($data);exit();
+        $this->load->view('curso/listCurso',$data);
 
     }
 
-//    public function cadastrar () {
-//        $this->load->model('M_curso');
-//        $data['resultado'] = $this->M_curso->get()->result_array();
-//        $this->load->view('cadSerie', $data);
-//    }
+   public function cadastrar () 
+   {
+
+       $this->load->view('curso/cadCurso', $data);
+   }
+   
+   public function editar()
+   {
+       
+       $id = $this->input->post('id');
+//        var_dump($this->M_curso->get($id)->result_array());exit();
+       $dados = $this->M_curso->get($id)->result_array()[0];
+       $this->load->view('curso/cadCurso', $dados);
+   }
+   
+   public function apagar()
+   {
+       $id = $this->input->post('id');
+       
+       if ($this->M_curso->delete($id)) {
+           $variaveis['mensagem'] = "Dados gravados com sucesso!";
+           // $this->load->view('v_sucesso', $variaveis);
+           var_dump('succes');
+           exit();
+       } else {
+           $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
+           // $this->load->view('errors/html/v_erro', $variaveis);
+       }
+   }
+   
 
     public function store()
     {

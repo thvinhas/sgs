@@ -7,7 +7,7 @@ $this->load->view('include/header.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Lista de Alunos</h1>
+                    <h1 class="page-header">Lista de Cursos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -20,32 +20,24 @@ $this->load->view('include/header.php');
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Matricula</th>
                                             <th>Nome</th>
-                                            <th>RG</th>
-                                            <th>Série</th>
-                                            <th>Nome do pai</th>
-                                            <th>Nome da mãe</th>
+                                            <th>Valor</th>
                       			            <th>Opções</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($alunos as $aluno):?>
+                                    <?php foreach ($cursos as $curso):?>
                                         <tr>
-                                            <td><?php echo $aluno->matricula?></td>
-                                            <td><?php echo $aluno->nome?></td>
-                                            <td><?php echo $aluno->rg_aluno?></td>
-                                            <td><?php echo $aluno->serie_id?></td>
-                                            <td><?php echo $aluno->nome_pai?></td>
-                                            <td><?php echo $aluno->nome_mae?></td>                                           
-                                            <td><?php echo  form_open('aluno/editar', ["style"=>"float: left;margin-right: 10px;"])  ?>
-                                            		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
+                                            <td><?php echo $curso->nome_curso?></td>
+                                            <td>R$ <?php echo $curso->valor_curso?></td>                                          
+                                            <td><?php echo  form_open('curso/editar', ["style"=>"float: left;margin-right: 10px;"])  ?>
+                                            		<input type="hidden" name="id" value="<?php echo $curso->id ?> ">
                                             		<button type="submit" class="btn btn-primary">Editar</button>
                                            		<?php echo form_close()?>
                                            		
-                                           		<?php echo  form_open('aluno/apagar')  ?>
-                                            		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
+                                           		<?php echo  form_open('curso/apagar')  ?>
+                                            		<input type="hidden" name="id" value="<?php echo $curso->id ?> ">
                                             		<button type="submit" class="btn btn-danger" style="float: left; mar">Apagar</button>
                                            		<?php echo form_close()?>
                                             

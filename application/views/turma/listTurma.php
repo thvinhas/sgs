@@ -20,32 +20,24 @@ $this->load->view('include/header.php');
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Matricula</th>
                                             <th>Nome</th>
-                                            <th>RG</th>
-                                            <th>Série</th>
-                                            <th>Nome do pai</th>
-                                            <th>Nome da mãe</th>
+                                            <th>Serie</th>
                       			            <th>Opções</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach ($alunos as $aluno):?>
+                                    <?php foreach ($turmas as $turma):?>
                                         <tr>
-                                            <td><?php echo $aluno->matricula?></td>
-                                            <td><?php echo $aluno->nome?></td>
-                                            <td><?php echo $aluno->rg_aluno?></td>
-                                            <td><?php echo $aluno->serie_id?></td>
-                                            <td><?php echo $aluno->nome_pai?></td>
-                                            <td><?php echo $aluno->nome_mae?></td>                                           
-                                            <td><?php echo  form_open('aluno/editar', ["style"=>"float: left;margin-right: 10px;"])  ?>
-                                            		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
+                                            <td><?php echo $turma->nome?></td>
+                                            <td><?php echo $turma->serie?></td>                                         
+                                            <td><?php echo  form_open('turma/editar', ["style"=>"float: left;margin-right: 10px;"])  ?>
+                                            		<input type="hidden" name="id" value="<?php echo $turma->id ?> ">
                                             		<button type="submit" class="btn btn-primary">Editar</button>
                                            		<?php echo form_close()?>
                                            		
-                                           		<?php echo  form_open('aluno/apagar')  ?>
-                                            		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
+                                           		<?php echo  form_open('turma/apagar')  ?>
+                                            		<input type="hidden" name="id" value="<?php echo $turma->id ?> ">
                                             		<button type="submit" class="btn btn-danger" style="float: left; mar">Apagar</button>
                                            		<?php echo form_close()?>
                                             
