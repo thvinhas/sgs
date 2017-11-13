@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Aluno extends CI_Controller
-{
+{//teste
 
     /**
      * Index Page for this controller.
