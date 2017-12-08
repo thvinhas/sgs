@@ -22,16 +22,18 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('disciplina/store')  ?>
-                                    <input type="hidden" value="<?php echo $id?>" name="id">
+                                    <?php if (isset($id)) :?>
+                                        <input type="hidden" value="<?php echo $id?>" name="id">
+                                    <?php endif;?>
                                     <form role="form">
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="" value="<?php echo $nm_disciplina?>">
+                                            <input class="form-control" name="nome" placeholder="" value="<?php echo (isset($nm_disciplina))? $nm_disciplina: ""?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Carga Horária:</label>
-                                            <input class="form-control" name="c_h" placeholder="" value="<?php echo $carga_horaria?>">
+                                            <input class="form-control" name="c_h" placeholder="" value="<?php echo (isset($carga_horaria))?$carga_horaria:""?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Curso</label>

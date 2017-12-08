@@ -43,7 +43,7 @@ $this->load->view('include/header.php');
                                             		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
                                             		<button type="submit" class="btn btn-primary">Editar</button>
                                            		<?php echo form_close()?>
-                                           		
+
                                            		<?php echo  form_open('aluno/apagar')  ?>
                                             		<input type="hidden" name="id" value="<?php echo $aluno->matricula ?> ">
                                             		<button type="submit" class="btn btn-danger" style="float: left; mar">Apagar</button>
@@ -55,6 +55,9 @@ $this->load->view('include/header.php');
                                     </tbody>
                                 </table>
                             </div>
+                            <?php echo  form_open('aluno/cadastrar')  ?>
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                            <?php echo form_close()?>
                         </div>
                     </div>
                 </div>

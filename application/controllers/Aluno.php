@@ -34,6 +34,8 @@ class Aluno extends CI_Controller
 
     public function listar()
     {
+        $data['tipo'] = $this->session->userdata('tipo_login');
+//        var_dump($data);exit();
         $data['alunos'] = $this->M_aluno->get()->result();
         $this->load->view('aluno/listAluno', $data);
     }
@@ -45,6 +47,7 @@ class Aluno extends CI_Controller
         $id = $this->input->post('id');
         $dados = $this->M_aluno->get($id)->result_array()[0];
         $dados['resultado'] = $this->M_turma->get()->result_array();
+        $dados['tipo'] = $this->session->userdata('tipo_login');
 //         var_dump($dados);exit();
         $this->load->view('aluno/cadAluno', $dados);
     }
@@ -56,7 +59,7 @@ class Aluno extends CI_Controller
         if ($this->M_aluno->delete($id)) {
             $variaveis['mensagem'] = "Dados gravados com sucesso!";
             // $this->load->view('v_sucesso', $variaveis);
-            var_dump('succes');
+//            var_dump('succes');
             exit();
         } else {
             $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
@@ -68,7 +71,7 @@ class Aluno extends CI_Controller
     public function cadastrar()
     {
         $this->load->model('M_turma');
-        
+        $data['tipo'] = $this->session->userdata('tipo_login');
         // var_dump($this->M_turma->get()->result());exit();
         $data['resultado'] = $this->M_turma->get()->result_array();
         $this->load->view('aluno/cadAluno', $data);

@@ -49,6 +49,9 @@ $this->load->view('include/header.php');
                                     </tbody>
                                 </table>
                             </div>
+                            <?php echo  form_open('Disciplina/cadastrar')  ?>
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                            <?php echo form_close()?>
                         </div>
                     </div>
                 </div>

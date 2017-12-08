@@ -7,7 +7,7 @@ $this->load->view('include/header.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Lista de Alunos</h1>
+                    <h1 class="page-header">Lista de Professoress</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -51,6 +51,9 @@ $this->load->view('include/header.php');
                                     </tbody>
                                 </table>
                             </div>
+                            <?php echo  form_open('professor/cadastrar')  ?>
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                            <?php echo form_close()?>
                         </div>
                     </div>
                 </div>

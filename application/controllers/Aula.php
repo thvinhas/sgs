@@ -38,6 +38,7 @@ class Aula extends CI_Controller {
     public function cadastrar () {
         $this->load->model('M_turma');
         $this->load->model('M_disciplina');
+        $data['tipo'] = $this->session->userdata('tipo_login');
 
         //        var_dump($this->M_turma->get()->result());exit();
         $data['turmas'] = $this->M_turma->get()->result_array();

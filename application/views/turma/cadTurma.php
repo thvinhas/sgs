@@ -22,10 +22,12 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('turma/store')  ?>
+                                    <?php if (isset($id)):?>
 										<input type="hidden" name="id" value="<?php echo $id?>">
+                                    <?php endif;?>
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome..."value="<?php echo $nome?>">
+                                            <input class="form-control" name="nome" placeholder="Digite nome..."value="<?php echo isset($nome)?$nome:""?>">
                                             <p class="help-block"></p>
                                         </div>
 

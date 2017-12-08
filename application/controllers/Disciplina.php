@@ -31,6 +31,7 @@ class Disciplina extends CI_Controller {
 
     public function cadastrar () {
         $this->load->model('M_curso');
+        $data['tipo'] = $this->session->userdata('tipo_login');
 
         $data['cursos'] = $this->M_curso->get()->result_array();
         $this->load->view('disciplina/cadDisciplina', $data);
@@ -39,7 +40,7 @@ class Disciplina extends CI_Controller {
     public function listar()
     {
         $data['disciplinas'] = $this->M_disciplina->get()->result();
-        
+        $data['tipo'] = $this->session->userdata('tipo_login');
         $this->load->view('disciplina/listDisciplina', $data);
     }
     
@@ -48,6 +49,7 @@ class Disciplina extends CI_Controller {
         $this->load->model('M_curso');
         
         $id = $this->input->post('id');
+        $data['tipo'] = $this->session->userdata('tipo_login');
         $dados = $this->M_disciplina->get($id)->result_array()[0];
         $dados['cursos'] = $this->M_curso->get()->result_array();
 //                 var_dump($dados);exit();

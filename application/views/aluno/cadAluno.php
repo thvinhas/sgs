@@ -28,17 +28,17 @@ $this->load->view('include/header.php');
                                     
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome..." value="<?php echo $nome?>">
+                                            <input class="form-control" name="nome" placeholder="Digite nome..." value="<?php echo (isset($nome))?$nome : ''?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>RG:</label>
-                                            <input class="form-control" name="nome" placeholder="" value="<?php echo $rg_aluno?>">
+                                            <input class="form-control" name="nome" placeholder="" value="<?php echo (isset($rg_aluno))?$rg_aluno: ""?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Data de Nascimento:</label>
-                                            <input class="form-control" type="date" name="data_nasc_aluno" value="<?php echo $data_nascimento?>">
+                                            <input class="form-control" type="date" name="data_nasc_aluno" value="<?php echo (isset($data_nascimento))? $data_nascimento: ""?>">
                                         </div>
                                     <div class="form-group">
                                         <label>Turma</label>
@@ -62,19 +62,19 @@ $this->load->view('include/header.php');
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Nome da Mãe:</label>
-                                        <input class="form-control" name="mae_aluno" value="<?php echo $nome_mae?>">
+                                        <input class="form-control" name="mae_aluno" value="<?php echo (isset($nome_mae))? $nome_mae :""?>">
                                     </div>
                                     <div class="form-group">
                                         <label>CPF da Mãe:</label>
-                                        <input class="form-control" name="CPF_mae_aluno" value="<?php echo $cpf_mae?>">
+                                        <input class="form-control" name="CPF_mae_aluno" value="<?php echo (isset($cpf_mae))? $cpf_mae: ""?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Nome do Pai:</label>
-                                        <input class="form-control" name="pai_aluno" value="<?php echo $nome_pai?>">
+                                        <input class="form-control" name="pai_aluno" value="<?php echo (isset($nome_mae))?$nome_pai:""?>">
                                     </div>
                                     <div class="form-group">
                                         <label>CPF do Pai:</label>
-                                        <input class="form-control" name="CPF_pai_aluno" value="<?php echo $cpf_pai?>">
+                                        <input class="form-control" name="CPF_pai_aluno" value="<?php echo (isset($cpf_pai))?$cpf_pai:""?>">
                                     </div>
                                 </div>
                                 <?php echo form_close(); ?>

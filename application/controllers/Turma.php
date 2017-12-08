@@ -36,6 +36,7 @@ class Turma extends CI_Controller {
     public function listar ()
     {
         $data['turmas'] = $this->M_turma->get()->result();
+        $data['tipo'] = $_SESSION['tipo_login'];
 //                         var_dump($data);exit();
         $this->load->view('turma/listTurma',$data);
 
@@ -48,7 +49,7 @@ class Turma extends CI_Controller {
         if ($this->M_turma->delete($id)) {
             $variaveis['mensagem'] = "Dados gravados com sucesso!";
             // $this->load->view('v_sucesso', $variaveis);
-            var_dump('succes');
+//            var_dump('succes');
             exit();
         } else {
             $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";
@@ -59,6 +60,7 @@ class Turma extends CI_Controller {
     public function cadastrar () {
         $this->load->model('M_serie');
         $data['resultado'] = $this->M_serie->get()->result_array();
+ $this->session->userdata('tipo_login');
         $this->load->view('turma/cadTurma', $data);
     }
     
@@ -68,6 +70,7 @@ class Turma extends CI_Controller {
         $id = $this->input->post('id');
         $data = $this->M_turma->get($id)->result_array()[0];
         $data['resultado'] = $this->M_serie->get()->result_array();
+ $this->session->userdata('tipo_login');
 //         var_dump($data);exit();
         $this->load->view('turma/cadTurma', $data);
     }

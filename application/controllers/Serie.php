@@ -31,6 +31,7 @@ class Serie extends CI_Controller {
     public function listar ()
     {
         $data['series'] = $this->M_serie->get()->result();
+        $data['tipo'] = $_SESSION['tipo_login'];
 //                 var_dump($data);exit();
         $this->load->view('serie/listSerie',$data);
 
@@ -39,6 +40,7 @@ class Serie extends CI_Controller {
     public function cadastrar () {
         $this->load->model('M_curso');
         $data['resultado'] = $this->M_curso->get()->result_array();
+        $data['tipo'] = $_SESSION['tipo_login'];
         $this->load->view('serie/cadSerie', $data);
     }
     
@@ -48,7 +50,7 @@ class Serie extends CI_Controller {
         
         $id = $this->input->post('id');
         $dados = $this->M_serie->get($id)->result_array()[0];
-
+ $this->session->userdata('tipo_login');
         $dados['resultado'] = $this->M_curso->get()->result_array();
         
 //                         var_dump($dados);exit();
@@ -64,7 +66,7 @@ class Serie extends CI_Controller {
         if ($this->M_serie->delete($id)) {
             $variaveis['mensagem'] = "Dados gravados com sucesso!";
             // $this->load->view('v_sucesso', $variaveis);
-            var_dump('succes');
+//            var_dump('succes');
             exit();
         } else {
             $variaveis['mensagem'] = "Ocorreu um erro. Por favor, tente novamente.";

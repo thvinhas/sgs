@@ -22,10 +22,12 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('serie/store')  ?>
-                                    <input name="id" value="<?php echo $id?>" type="hidden">
+                                    <?php if (isset($id)):?>
+                                        <input name="id" value="<?php echo $id?>" type="hidden">
+                                    <?php endif;?>
                                         <div class="form-group">
                                             <label>Descrição:</label>
-                                            <input class="form-control" name="nome" placeholder="" value="<?php echo $nome?>">
+                                            <input class="form-control" name="nome" placeholder="" value="<?php echo isset($nome)? $nome:""?>">
                                             <p class="help-block"></p>
                                         </div>
 
@@ -44,7 +46,7 @@ $this->load->view('include/header.php');
 
                                         <div class="form-group">
                                             <label>Período Letivo:</label>
-                                            <input class="form-control" name="periodo" placeholder="" value="<?php echo $periodo_letivo?>">
+                                            <input class="form-control" name="periodo" placeholder="" value="<?php echo isset($periodo_letivo)?$periodo_letivo:""?>">
                                             <p class="help-block"></p>
                                         </div>
 

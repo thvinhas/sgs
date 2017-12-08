@@ -32,6 +32,7 @@ class Professor extends CI_Controller {
     public function listar ()
     {
         $data['professores'] = $this->M_professor->get()->result();
+        $data['tipo'] = $_SESSION['tipo_login'];
 //         var_dump($data);exit();
         $this->load->view('professor/listProfessor',$data);
 
@@ -41,6 +42,7 @@ class Professor extends CI_Controller {
               
         $id = $this->input->post('id');
         $dados = $this->M_professor->get($id)->result_array()[0];
+ $this->session->userdata('tipo_login');
 //                 var_dump($dados);exit();
         $this->load->view('professor/cadProfessor', $dados);
     }
@@ -61,7 +63,8 @@ class Professor extends CI_Controller {
     }
 
    public function cadastrar () {
-       $this->load->view('professor/cadProfessor');
+       $data['tipo'] = $_SESSION['tipo_login'];
+       $this->load->view('professor/cadProfessor',$data);
    }
 
     public function store()

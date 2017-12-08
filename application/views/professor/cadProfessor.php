@@ -22,25 +22,27 @@ $this->load->view('include/header.php');
                             <div class="row">
                                 <div class="col-lg-6">
                                     <?php echo  form_open('professor/store')  ?>
-                                    <input type="hidden" value="<?php echo $matricula?>" name="id">
+                                    <?php if (isset($matricula)):?>
+                                        <input type="hidden" value="<?php echo $matricula?>" name="id">
+                                    <?php endif;?>
                                         <div class="form-group">
                                             <label>Matricula:</label>
-                                            <input class="form-control" name="matricula" placeholder="Digite a matricula..." value="<?php echo $matricula?>">
+                                            <input class="form-control" name="matricula" placeholder="Digite a matricula..." value="<?php echo (isset($matricula))?$matricula:""?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Nome:</label>
-                                            <input class="form-control" name="nome" placeholder="Digite nome..." value="<?php echo $nome?>">
+                                            <input class="form-control" name="nome" placeholder="Digite nome..." value="<?php echo (isset($nome))?$nome:""?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>CPF:</label>
-                                            <input class="form-control" name="cpf" placeholder="" value="<?php echo $cpf_professor?>">
+                                            <input class="form-control" name="cpf" placeholder="" value="<?php echo isset($cpf_professor)?$cpf_professor:""?>">
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Email:</label>
-                                            <input class="form-control" name="email" placeholder="Digite o email..." value="<?php echo $email?>">
+                                            <input class="form-control" name="email" placeholder="Digite o email..." value="<?php echo isset($email)?$email:""?>">
                                             <p class="help-block"></p>
                                         </div>
 

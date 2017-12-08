@@ -36,6 +36,7 @@ class Curso extends CI_Controller {
     public function listar ()
     {
         $data['cursos'] = $this->M_curso->get()->result();
+        $data['tipo'] = $this->session->userdata('tipo_login');
 //         var_dump($data);exit();
         $this->load->view('curso/listCurso',$data);
 
@@ -43,7 +44,7 @@ class Curso extends CI_Controller {
 
    public function cadastrar () 
    {
-
+       $data['tipo'] = $this->session->userdata('tipo_login');
        $this->load->view('curso/cadCurso', $data);
    }
    
@@ -52,6 +53,7 @@ class Curso extends CI_Controller {
        
        $id = $this->input->post('id');
 //        var_dump($this->M_curso->get($id)->result_array());exit();
+       $dados['tipo'] = $this->session->userdata('tipo_login');
        $dados = $this->M_curso->get($id)->result_array()[0];
        $this->load->view('curso/cadCurso', $dados);
    }
